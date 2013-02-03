@@ -1,16 +1,15 @@
 Python-DevEnv
 -------------
 
-PDE is a simple development environment setup script for Python
-projects. 
+**Python-DevEnv** (PDE) is a simple development environment setup 
+script for Python projects. 
 
-It will ask you a series of questions about your project, then 
-generate an appropriate ``setup.py`` and ``README.rst``.  
+It asks a series of questions about your project, then generate an 
+appropriate ``setup.py`` and ``README.rst``.  
 
-Additionally, it can generate (via the ``-p`` switch) a 
-``.pylintrc`` with some useful settings for Pylint. The settings
-are a little more liberal then the basic options, but still very 
-useful.
+If you like, it can also generate a ``.pylintrc`` with some useful
+settings for Pylint. (Use ``-p``.)  The settings are a little more 
+liberal then the basic options, but still very useful.
 
 
 Usage
@@ -18,7 +17,7 @@ Usage
 
 ``usage: pde [-h] [-p] [-g]``
 
-**Python-DevEnv** is a simple setup script generator to help start
+Python-DevEnv is a simple setup script generator to help start
 Python projects. It can automatically generate ``pylint`` configuration,
 and has easy ``setup.py`` commands for unittesting, style testing, and 
 git support.
@@ -36,20 +35,20 @@ Output Usage
 The generated setup script has additional commands that should
 be useful when working on any Python project.
 
-``python setup.py test``: Automatically run ``unittest`` discovery
+``python setup.py test``: Automatically runs ``unittest`` discovery
 on the provided test directory.
 
 ``python setup.py style``: Run pylint style checking on the source
-directory provided. If the -p switch was not used when running PDE
-then this will do nothing by default and there will be no .pylintrc
-file in the project directory.
+directory provided. If the ``-p`` switch was not used, this will do 
+nothing by default (there will be no ``.pylintrc``
+file in the project directory).
 
-``python setup.py prep``: Will run the test and style command, handy to
+``python setup.py prep``: Will run the test and style command. Handy to
 ensure that everything is working before a distribution or commit.
 
 ``python setup.py commit [-m message]``: Allows simple git integration by
 running `git add .` followed by a `git commit` with an optional
-message provided by the -m switch.
+message provided by the ``-m`` switch.
 
 
 License
