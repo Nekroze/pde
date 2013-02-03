@@ -3,6 +3,9 @@
 # C extensions
 *.so
 
+# IDE files
+*.nja
+
 # Packages
 *.egg
 *.egg-info
