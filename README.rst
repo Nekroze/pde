@@ -25,8 +25,8 @@ git support.
 **Optional arguments:**::
 
     -h, --help       show this help message and exit
-    -p, --pylint     Enable pylint integration
-    -g, --gitignore  Generate .gitignore file for python
+    -p, --pylint     Generate .pylintrc file for pylint
+    -g, --gitignore  Generate .gitignore file with python and cython settings
 
 
 Output Usage
@@ -39,9 +39,9 @@ be useful when working on any Python project.
 on the provided test directory.
 
 ``python setup.py style``: Run pylint style checking on the source
-directory provided. If the ``-p`` switch was not used, this will do 
-nothing by default (there will be no ``.pylintrc``
-file in the project directory).
+directory provided. If the ``-p`` switch was not used, this will
+complain because there will be no ``.pylintrc`` file in the project
+directory however one can be manually made. 
 
 ``python setup.py prep``: Will run the test and style command. Handy to
 ensure that everything is working before a distribution or commit.

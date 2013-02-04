@@ -293,7 +293,6 @@ PROJECTLICENSE = '{PROJECTLICENSE}'
 EXTENSIONS = []  # DEFINE YOURSELF if compiled extensions are needed
 
 
-PYLINT = {PYLINT}
 PYTHON = 'python'
 if platform.system() != 'Windows' and sys.version_info[0] == 3:
     PYTHON = 'python3'
@@ -355,7 +354,7 @@ class Prep(Command):
     def run(self):
         if os.system(PYTHON + ' setup.py test'):
             sys.exit(1)
-        if PYLINT and os.system(PYTHON + ' setup.py style'):
+        if os.system(PYTHON + ' setup.py style'):
             sys.exit(1)
 
 
@@ -413,7 +412,8 @@ setup(
 '''
 
 PDE_GITIGNORE = '''
-*.py[cod]
+*.py[codx]
+*.pxd
 
 # C extensions
 *.so
@@ -512,9 +512,9 @@ def driver():
     """Python-DevEnv is a simple setup script generator to help with starting
     a python project. It can automatically generate pylint configs and easy
     setup script commands for unittesting, style testing and git support.""")
-    parser.add_argument("-p", "--pylint", help="Enable pylint integration",
+    parser.add_argument("-p", "--pylint", help="Generate .pylintrc file for pylint",
                     action="store_true", default = False)
-    parser.add_argument("-g", "--gitignore", help="Generate .gitignore file for python",
+    parser.add_argument("-g", "--gitignore", help="Generate .gitignore file with python and cython settings",
                     action="store_true", default = False)
     args = parser.parse_args()
 
