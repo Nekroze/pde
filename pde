@@ -1,4 +1,3 @@
-
 #!/usr/bin/python
 from __future__ import print_function
 import argparse
@@ -271,8 +270,7 @@ int-import-graph=
 overgeneral-exceptions=Exception
 '''
 
-PDE_SETUP = '''
-#!/usr/bin/python
+PDE_SETUP = '''#!/usr/bin/python
 import re
 import os
 import sys
@@ -419,7 +417,7 @@ setup(
         'test': Test,
         'prep': Prep,
         'commit': GitCommit,
-        'pypiup': PyPiUpload'},
+        'pypiup': PyPiUpload},
 
     name=PROJECTNAME,
     author=__author__,
@@ -477,6 +475,10 @@ nosetests.xml
 PROJECT_INFO = {}
 
 def get_input(message = '', default = None):
+    """Python 2 and 3 compatible get input method.
+    Takes a message to display and a default input
+    that is returned if nothing is inputted.
+    """
     if default is None:
         sys.stdout.write(message + '\n>')
     else:
@@ -489,11 +491,15 @@ def get_input(message = '', default = None):
         return default
 
 def store_input(key, message = '', default = None):
+    """Gets input and stores it in the PROJECT_INFO dictionary.
+    Will skip any keys that are already set.
+    """
     if PROJECT_INFO.get(key, None) is None:
         PROJECT_INFO[key] = get_input( \
             message + '?', default)
 
 def collect_information():
+    """Collects all the information required for PDE setup"""
     store_input('{PROJECTNAME}', 'What is the name of the project')
     store_input('{AUTHOR}', 'What is the name of the author')
     store_input('{EMAIL}', 'What is the email address for this project')
@@ -504,9 +510,6 @@ def collect_information():
     store_input('{PROJECTLICENSE}', 'What license is this project under', \
         'MIT')
     store_input('{PLATFORMS}', 'Comma sperated list of platforms for this project')
-
-    PROJECT_INFO['{PLATFORMS}'] = [string.strip() for string in PROJECT_INFO['{PLATFORMS}'].split(',')]
-
     store_input('{SOURCE}', 'Where is the project source located', \
         PROJECT_INFO['{PROJECTNAME}'].lower())
     store_input('{TESTDIR}', 'What is the unittest directory', \
@@ -514,10 +517,18 @@ def collect_information():
 
 
 def setup_pylint():
+    """Saves the stored .pylintrc file to disk"""
     open('.pylintrc', 'w').write(PDE_PYLINT)
 
 
 def create_setup():
+    """Replace all PROJECT_INFO keys in the setup.py base 
+    with the PROJECT_INFO values and output to file.
+    """
+    if PROJECT_INFO.get('{PLATFORMS}', None) is None:
+        PROJCET_INFO['{PLATFORMS}'] = ''
+    PROJECT_INFO['{PLATFORMS}'] = \
+        [string.strip() for string in PROJECT_INFO['{PLATFORMS}'].split(',')]
     base = PDE_SETUP
     for key, value in PROJECT_INFO.items():
         base = base.replace(key, str(value))
@@ -526,6 +537,9 @@ def create_setup():
 
 
 def create_readme():
+    """Create a basic README.rst file solong as one doesnt already exit.
+    Uses previously defined project name and description for the body.
+    """
     if os.path.exists('README.rst'):
         return None
 
@@ -534,18 +548,56 @@ def create_readme():
         readme.write('-' * len(str(PROJECT_INFO['{PROJECTNAME}'])))
         readme.write('\n\n' + str(PROJECT_INFO['{PROJECTDESC}']))
 
+def handle_info_defaults(args):
+    """Takes in the command line information args for storage."""
+    def assign_if(arg, key):
+        if arg:
+            PROJECT_INFO[key] = arg
+    assign_if(args.name, '{PROJECTNAME}')
+    assign_if(args.author, '{AUTHOR}')
+    assign_if(args.description, '{PROJECTDESC}')
+    assign_if(args.projversion, '{VERSION}')
+    assign_if(args.email, '{EMAIL}')
+    assign_if(args.website, '{PROJCETSITE}')
+    assign_if(args.projlicense, '{PROJECTLICENSE}')
+    assign_if(args.platforms, '{PLATFORMS}')
+    assign_if(args.source, '{SOURCE}')
+    assign_if(args.test, '{TESTDIR}')
 
 def driver():
+    """Drive the usage of pde and its command line argument parser."""
     parser = argparse.ArgumentParser(description = \
     """Python-DevEnv is a simple setup script generator to help with starting
     a python project. It can automatically generate pylint configs and easy
-    setup script commands for unittesting, style testing and git support.""")
+    setup script commands for unittesting, style testing and git support.
+
+    All questions can be overridden with command line arguments as detailed below.""")
     parser.add_argument("-p", "--pylint", help="Generate .pylintrc file for pylint",
                     action="store_true", default = False)
     parser.add_argument("-g", "--gitignore", help="Generate .gitignore file with python and cython settings",
                     action="store_true", default = False)
     parser.add_argument("-v", "--version", help="Python-DevEnv version display",
                     action="store_true", default = False)
+    parser.add_argument("--name", help="Project name", 
+                        type=str, default = '')
+    parser.add_argument("--description", help="Project description", 
+                        type=str, default = '')
+    parser.add_argument("--author", help="Project Author name", 
+                        type=str, default = '')
+    parser.add_argument("--email", help="Project/Author email address", 
+                        type=str, default = '')
+    parser.add_argument("--website", help="Project website url", 
+                        type=str, default = '')
+    parser.add_argument("--projversion", help="Project version", 
+                        type=str, default = '')
+    parser.add_argument("--projlicense", help="Project license", 
+                        type=str, default = '')
+    parser.add_argument("--platforms", help="Project platforms, comma seperated string", 
+                        type=str, default = '')
+    parser.add_argument("--source", help="Project source code location",
+                        type=str, default = '')
+    parser.add_argument("--test", help="Project unittest code location",
+                        type=str, default = '')
     args = parser.parse_args()
 
     if args.version:
@@ -556,6 +608,8 @@ def driver():
 
     if args.gitignore:
         open('.gitignore', 'w').write(PDE_GITIGNORE)
+
+    handle_info_defaults(args)
 
     collect_information()
 
