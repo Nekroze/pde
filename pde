@@ -396,8 +396,6 @@ class PyPiUpload(Command):
 
     def run(self):
         """build an sdist and then upload."""
-        if os.system(PYTHON + ' setup.py check'):
-            sys.exit(1)
         if os.system(PYTHON + ' setup.py sdist upload'):
             sys.exit(1)
         print('PyPi Upload successful.')
