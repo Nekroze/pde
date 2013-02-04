@@ -73,6 +73,10 @@ Thanks!
 Changelog
 =========
 
+The major version is incremented when there is a major usage change.
+The minor version is incremented when new features are implemented.
+The micro version is incremented for small bug fixes and are often undocumented in the changelog.
+
 v1.1.0 - February 4th 2013
  * Clearer README thanks to Zearin
  * PyPi upload command in generated setup.py
