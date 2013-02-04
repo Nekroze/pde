@@ -155,6 +155,8 @@ setup(
     url=PROJECTSITE,
     ext_modules = EXTENSIONS,
     scripts=SCRIPTS,
+    platforms = ['*nix', 'Windows'],
+    download_url = 'http://pypi.python.org/pypi/Python-DevEnv',
     classifiers=[        
         'Development Status :: 5 - Production/Stable',
         'Environment :: Console',
