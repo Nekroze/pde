@@ -473,6 +473,12 @@ nosetests.xml
 '''
 
 PROJECT_INFO = {}
+OUTPUTDIR = ''
+
+def ensure_dir(f):
+    d = os.path.dirname(f)
+    if d != '' and not os.path.exists(d):
+        os.makedirs(d)
 
 def get_input(message = '', default = None):
     """Python 2 and 3 compatible get input method.
@@ -500,7 +506,7 @@ def store_input(key, message = '', default = None):
 
 def collect_information():
     """Collects all the information required for PDE setup"""
-    store_input('{PROJECTNAME}', 'What is the name of the project')
+    store_input('{PROJECTNAME}', 'What is the name of the project', 'MyProject')
     store_input('{AUTHOR}', 'What is the name of the author')
     store_input('{EMAIL}', 'What is the email address for this project')
     store_input('{PROJECTSITE}', 'What is the website for this project')
@@ -518,41 +524,55 @@ def collect_information():
 
 def setup_pylint():
     """Saves the stored .pylintrc file to disk"""
-    open('.pylintrc', 'w').write(PDE_PYLINT)
+    global OUTPUTDIR
+    filename = os.path.join(OUTPUTDIR, '.pylintrc')
+    ensure_dir(filename)
+    open(filename, 'w').write(PDE_PYLINT)
 
 
 def create_setup():
     """Replace all PROJECT_INFO keys in the setup.py base 
     with the PROJECT_INFO values and output to file.
     """
+    global OUTPUTDIR
     if PROJECT_INFO.get('{PLATFORMS}', None) is None:
-        PROJCET_INFO['{PLATFORMS}'] = ''
+        PROJECT_INFO['{PLATFORMS}'] = ''
     PROJECT_INFO['{PLATFORMS}'] = \
         [string.strip() for string in PROJECT_INFO['{PLATFORMS}'].split(',')]
     base = PDE_SETUP
     for key, value in PROJECT_INFO.items():
         base = base.replace(key, str(value))
 
-    open('setup.py', 'w').write(base)
+    filename = os.path.join(OUTPUTDIR, 'setup.py')
+    ensure_dir(filename)
+    open(filename, 'w').write(base)
 
 
 def create_readme():
     """Create a basic README.rst file solong as one doesnt already exit.
     Uses previously defined project name and description for the body.
     """
-    if os.path.exists('README.rst'):
+    global OUTPUTDIR
+    filename = os.path.join(OUTPUTDIR, 'README.rst')
+    ensure_dir(filename)
+    if os.path.exists(filename):
         return None
 
-    with open('README.rst', 'w') as readme:
+    with open(os.path.join(OUTPUTDIR, 'README.rst'), 'w') as readme:
         readme.write(str(PROJECT_INFO['{PROJECTNAME}']) + '\n')
         readme.write('-' * len(str(PROJECT_INFO['{PROJECTNAME}'])))
         readme.write('\n\n' + str(PROJECT_INFO['{PROJECTDESC}']))
+
 
 def handle_info_defaults(args):
     """Takes in the command line information args for storage."""
     def assign_if(arg, key):
         if arg:
             PROJECT_INFO[key] = arg
+
+    global OUTPUTDIR
+    OUTPUTDIR = os.path.join(OUTPUTDIR, args.outputdir)
+
     assign_if(args.name, '{PROJECTNAME}')
     assign_if(args.author, '{AUTHOR}')
     assign_if(args.description, '{PROJECTDESC}')
@@ -563,6 +583,7 @@ def handle_info_defaults(args):
     assign_if(args.platforms, '{PLATFORMS}')
     assign_if(args.source, '{SOURCE}')
     assign_if(args.test, '{TESTDIR}')
+
 
 def driver():
     """Drive the usage of pde and its command line argument parser."""
@@ -578,6 +599,8 @@ def driver():
                     action="store_true", default = False)
     parser.add_argument("-v", "--version", help="Python-DevEnv version display",
                     action="store_true", default = False)
+    parser.add_argument("-o", "--outputdir", help="Output directory", 
+                        type=str, default = '')
     parser.add_argument("--name", help="Project name", 
                         type=str, default = '')
     parser.add_argument("--description", help="Project description", 
@@ -606,10 +629,13 @@ def driver():
 
     PROJECT_INFO['{PYLINT}'] = args.pylint
 
-    if args.gitignore:
-        open('.gitignore', 'w').write(PDE_GITIGNORE)
-
     handle_info_defaults(args)
+
+    global OUTPUTDIR
+    if args.gitignore:
+        filename = os.path.join(OUTPUTDIR, '.gitignore')
+        ensure_dir(filename)
+        open(filename, 'w').write(PDE_GITIGNORE)
 
     collect_information()
 

@@ -1,4 +1,0 @@
-TestProject
------------
-
-Simple test project

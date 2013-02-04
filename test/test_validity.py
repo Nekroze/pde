@@ -21,10 +21,10 @@ class TestValidity(unittest.TestCase):
         for arg in arglist:
             args += ' ' + arg
 
-        if os.system('python ../pde' + args):
+        if os.system('python pde -p -g --outputdir test_output' + args):
             sys.exit(1)
 
-        if os.system('python setup.py --help-commands'):
+        if os.system('python test_output/setup.py --help-commands'):
             sys.exit(1)
         
 if __name__ == "__main__":
