@@ -15,7 +15,6 @@ liberal then the basic options, but still very useful.
 Usage
 =====
 
-``pde -h``
 usage: pde [-h] [-p] [-g] [-v] [-o OUTPUTDIR]
            [--name NAME] [--description DESCRIPTION] [--author AUTHOR]
            [--email EMAIL] [--website WEBSITE] [--projversion PROJVERSION]
@@ -49,7 +48,6 @@ can be overridden with command line arguments as detailed below.
                         Project platforms, comma seperated string
   --source SOURCE       Project source code location
   --test TEST           Project unittest code location
-
 
 Output Usage
 ============
