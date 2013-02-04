@@ -50,7 +50,6 @@ ensure that everything is working before a distribution or commit.
 running `git add .` followed by a `git commit` with an optional
 message provided by the ``-m`` switch.
 
-
 License
 =======
 PDE is under the MIT license, so you're free to use it for anything 
@@ -66,3 +65,11 @@ If you encounter any errors or problems with PDE, please let me know! Open
 an Issue at the GitHub repository http://github.com/Nekroze/Python-DevEnv .
 
 Thanks!
+
+Changelog
+=========
+
+v1.1.0 - February 4th 2013
+- Clearer README thanks to Zearin
+- PyPi upload command in generated setup.py
+- Less pylint messages disabled

@@ -435,8 +435,7 @@ setup(
 '''
 
 PDE_GITIGNORE = '''
-*.py[codx]
-*.pxd
+*.py[cod]
 
 # C extensions
 *.so
@@ -455,6 +454,7 @@ develop-eggs
 .installed.cfg
 lib
 lib64
+__pycache__
 
 # Installer logs
 pip-log.txt
