@@ -539,7 +539,13 @@ def driver():
                     action="store_true", default = False)
     parser.add_argument("-g", "--gitignore", help="Generate .gitignore file with python and cython settings",
                     action="store_true", default = False)
+    parser.add_argument("-v", "--version", help="Python-DevEnv version display",
+                    action="store_true", default = False)
     args = parser.parse_args()
+
+    if args.version:
+        print('Python-DevEnv v' + __version__)
+        sys.exit(0)
 
     PROJECT_INFO['{PYLINT}'] = args.pylint
 
