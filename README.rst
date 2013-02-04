@@ -74,8 +74,8 @@ Changelog
 =========
 
 v1.1.0 - February 4th 2013
-- Clearer README thanks to Zearin
-- PyPi upload command in generated setup.py
-- Less pylint messages disabled
-- Added __pycache__ dir to .gitignore generationa.
-- Clearer -h help messages.
+ * Clearer README thanks to Zearin
+ * PyPi upload command in generated setup.py
+ * Less pylint messages disabled
+ * Added __pycache__ dir to .gitignore generationa.
+ * Clearer -h help messages.
