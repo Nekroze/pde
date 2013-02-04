@@ -15,11 +15,11 @@ liberal then the basic options, but still very useful.
 Usage
 =====
 
-``usage: pde [-h] [-p] [-g] [-v] [-o OUTPUTDIR] [--name NAME]``
-``           [--description DESCRIPTION] [--author AUTHOR] [--email EMAIL]``
-``           [--website WEBSITE] [--projversion PROJVERSION]``
-``           [--projlicense PROJLICENSE] [--platforms PLATFORMS]``
-``           [--source SOURCE] [--test TEST]``
+``usage: pde [-h] [-p] [-g] [-v] [-o OUTPUTDIR] [--name NAME]
+           [--description DESCRIPTION] [--author AUTHOR] [--email EMAIL]
+           [--website WEBSITE] [--projversion PROJVERSION]
+           [--projlicense PROJLICENSE] [--platforms PLATFORMS]
+           [--source SOURCE] [--test TEST]``
 
 Python-DevEnv is a simple setup script generator to help with starting a
 python project. It can automatically generate ``pylint`` configs and easy ``setup.py``
