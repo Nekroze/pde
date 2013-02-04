@@ -6,19 +6,16 @@ import platform
 from distutils.core import setup, Command
 
 
-__version__ = '1.1.1'
-__author__ = 'Taylor "Nekroze" Embrace'
+__version__ = '1.0.0'
+__author__ = 'Nekroze'
 __email__ = 'nekroze@eturnilnetwork.com'
-SOURCE = 'pde'
+SOURCE = 'src'
 TESTDIR = 'test'
-PROJECTNAME = 'Python-DevEnv'
-PROJECTSITE = 'http://github.com/Nekroze/Python-DevEnv'
-PROJECTDESC = \
-'PDE is a simple development environment setup script for python projects.'
+PROJECTNAME = 'TestProject'
+PROJECTSITE = 'nekroze.eturnilnetwork.com'
+PROJECTDESC = 'Simple test project'
 PROJECTLICENSE = 'MIT'
 PLATFORMS = ['*nix', 'Windows']
-
-SCRIPTS = ['pde']
 
 EXTENSIONS = []  # DEFINE YOURSELF if compiled extensions are needed
 
@@ -153,20 +150,11 @@ setup(
     author=__author__,
     author_email=__email__,
     url=PROJECTSITE,
+    platforms=PLATFORMS,
+    packages=[SOURCE],
     ext_modules = EXTENSIONS,
-    scripts=SCRIPTS,
-    platforms = PLATFORMS,
-    download_url = 'http://pypi.python.org/pypi/Python-DevEnv',
-    classifiers=[        
-        'Development Status :: 5 - Production/Stable',
-        'Environment :: Console',
-        'Intended Audience :: Developers',
-        'License :: OSI Approved :: MIT License',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 3',
-        'Topic :: Software Development',
-        'Topic :: Software Development :: Testing',
-        'Topic :: Utilities'
+    classifiers=[
+        # DEFINE YOURSELF
     ],
     **kwds
 )

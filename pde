@@ -558,7 +558,7 @@ def handle_info_defaults(args):
     assign_if(args.description, '{PROJECTDESC}')
     assign_if(args.projversion, '{VERSION}')
     assign_if(args.email, '{EMAIL}')
-    assign_if(args.website, '{PROJCETSITE}')
+    assign_if(args.website, '{PROJECTSITE}')
     assign_if(args.projlicense, '{PROJECTLICENSE}')
     assign_if(args.platforms, '{PLATFORMS}')
     assign_if(args.source, '{SOURCE}')
