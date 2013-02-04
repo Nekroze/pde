@@ -3,3 +3,4 @@ LICENSE.txt
 README.rst
 pde
 setup.py
+test/test_validity.py

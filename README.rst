@@ -86,6 +86,9 @@ Feedback
 If you have any suggestions or questions about PDE feel free to email
 me at nekroze@eturnilnetwork.com.
 
+You can check out more of what I am doing at
+http://nekroze.eturnilnetwork.com my blog.
+
 If you encounter any errors or problems with PDE, please let me know! Open
 an Issue at the GitHub repository http://github.com/Nekroze/Python-DevEnv .
 
@@ -96,7 +99,8 @@ Changelog
 
 The major version is incremented when there is a major usage change.
 The minor version is incremented when new features are implemented.
-The micro version is incremented for small bug fixes and are often undocumented in the changelog.
+The micro version is incremented for small bug fixes and are often
+undocumented unless they change the user experience.
 
 v1.2.0 - February 4th 2013
  * Optional output directory
