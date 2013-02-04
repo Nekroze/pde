@@ -15,18 +15,39 @@ liberal then the basic options, but still very useful.
 Usage
 =====
 
-``usage: pde [-h] [-p] [-g]``
+``usage: pde [-h] [-p] [-g] [-v] [-o OUTPUTDIR] [--name NAME]``
+``           [--description DESCRIPTION] [--author AUTHOR] [--email EMAIL]``
+``           [--website WEBSITE] [--projversion PROJVERSION]``
+``           [--projlicense PROJLICENSE] [--platforms PLATFORMS]``
+``           [--source SOURCE] [--test TEST]``
 
-Python-DevEnv is a simple setup script generator to help start
-Python projects. It can automatically generate ``pylint`` configuration,
-and has easy ``setup.py`` commands for unittesting, style testing, and 
-git support.
+Python-DevEnv is a simple setup script generator to help with starting a
+python project. It can automatically generate ``pylint`` configs and easy ``setup.py``
+script commands for unittesting, style testing and git support. All questions
+can be overridden with command line arguments as detailed below.
 
-**Optional arguments:**::
-
-    -h, --help       show this help message and exit
-    -p, --pylint     Generate .pylintrc file for pylint
-    -g, --gitignore  Generate .gitignore file with python and cython settings
+**optional arguments**::
+  -h, --help            show this help message and exit
+  -p, --pylint          Generate .pylintrc file for pylint
+  -g, --gitignore       Generate .gitignore file with python and cython
+                        settings
+  -v, --version         Python-DevEnv version display
+  -o OUTPUTDIR, --outputdir OUTPUTDIR
+                        Output directory
+  --name NAME           Project name
+  --description DESCRIPTION
+                        Project description
+  --author AUTHOR       Project Author name
+  --email EMAIL         Project/Author email address
+  --website WEBSITE     Project website url
+  --projversion PROJVERSION
+                        Project version
+  --projlicense PROJLICENSE
+                        Project license
+  --platforms PLATFORMS
+                        Project platforms, comma seperated string
+  --source SOURCE       Project source code location
+  --test TEST           Project unittest code location
 
 
 Output Usage
@@ -76,6 +97,11 @@ Changelog
 The major version is incremented when there is a major usage change.
 The minor version is incremented when new features are implemented.
 The micro version is incremented for small bug fixes and are often undocumented in the changelog.
+
+v1.2.0 - February 4th 2013
+ * Optional output directory
+ * Optional project information overrides from the command line
+ * Platforms information added
 
 v1.1.0 - February 4th 2013
  * Clearer README thanks to Zearin

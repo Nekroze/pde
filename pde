@@ -4,7 +4,7 @@ import argparse
 import sys
 import os
 
-__version__ = '1.1.1'
+__version__ = '1.2.0'
 __author__ = 'Taylor "Nekroze" Lawson'
 __email__ = 'nekroze@eturnilnetwork.com'
 
@@ -590,7 +590,7 @@ def driver():
     parser = argparse.ArgumentParser(description = \
     """Python-DevEnv is a simple setup script generator to help with starting
     a python project. It can automatically generate pylint configs and easy
-    setup script commands for unittesting, style testing and git support.
+    setup.py script commands for unittesting, style testing and git support.
 
     All questions can be overridden with command line arguments as detailed below.""")
     parser.add_argument("-p", "--pylint", help="Generate .pylintrc file for pylint",
