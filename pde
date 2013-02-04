@@ -4,7 +4,7 @@ import argparse
 import sys
 import os
 
-__version__ = '1.2.0'
+__version__ = '1.2.1'
 __author__ = 'Taylor "Nekroze" Lawson'
 __email__ = 'nekroze@eturnilnetwork.com'
 

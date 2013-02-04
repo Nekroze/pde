@@ -16,9 +16,9 @@ Usage
 =====
 
 ``pde -h``
-usage: pde [-h] [-p] [-g] [-v] [-o OUTPUTDIR] [--name NAME]
-           [--description DESCRIPTION] [--author AUTHOR] [--email EMAIL]
-           [--website WEBSITE] [--projversion PROJVERSION]
+usage: pde [-h] [-p] [-g] [-v] [-o OUTPUTDIR]
+           [--name NAME] [--description DESCRIPTION] [--author AUTHOR]
+           [--email EMAIL] [--website WEBSITE] [--projversion PROJVERSION]
            [--projlicense PROJLICENSE] [--platforms PLATFORMS]
            [--source SOURCE] [--test TEST]
 

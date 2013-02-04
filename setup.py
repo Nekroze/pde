@@ -6,7 +6,7 @@ import platform
 from distutils.core import setup, Command
 
 
-__version__ = '1.2.0'
+__version__ = '1.2.1'
 __author__ = 'Taylor "Nekroze" Embrace'
 __email__ = 'nekroze@eturnilnetwork.com'
 SOURCE = 'pde'
