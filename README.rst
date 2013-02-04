@@ -50,6 +50,10 @@ ensure that everything is working before a distribution or commit.
 running `git add .` followed by a `git commit` with an optional
 message provided by the ``-m`` switch.
 
+``python setup.py pypiup``: Performs a distutils check to ensure that
+project meta data is up to spec then creates an sdist and attempts to
+upload it to the PyPi package repository.
+
 License
 =======
 PDE is under the MIT license, so you're free to use it for anything 
@@ -73,3 +77,5 @@ v1.1.0 - February 4th 2013
 - Clearer README thanks to Zearin
 - PyPi upload command in generated setup.py
 - Less pylint messages disabled
+- Added __pycache__ dir to .gitignore generationa.
+- Clearer -h help messages.
