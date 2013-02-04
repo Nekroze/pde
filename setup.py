@@ -17,6 +17,7 @@ PROJECTSITE = 'http://github.com/Nekroze/Python-DevEnv'
 PROJECTDESC = \
 'PDE is a simple development environment setup script for python projects.'
 PROJECTLICENSE = 'MIT'
+PLATFORMS = ['*nix', 'Windows']
 
 SCRIPTS = ['pde']
 
@@ -155,7 +156,7 @@ setup(
     url=PROJECTSITE,
     ext_modules = EXTENSIONS,
     scripts=SCRIPTS,
-    platforms = ['*nix', 'Windows'],
+    platforms = PLATFORMS,
     download_url = 'http://pypi.python.org/pypi/Python-DevEnv',
     classifiers=[        
         'Development Status :: 5 - Production/Stable',

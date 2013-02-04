@@ -1,3 +1,4 @@
+
 #!/usr/bin/python
 from __future__ import print_function
 import argparse
@@ -289,6 +290,7 @@ PROJECTSITE = '{PROJECTSITE}'
 PROJECTDESC = \
 '{PROJECTDESC}'
 PROJECTLICENSE = '{PROJECTLICENSE}'
+PLATFORMS = {PLATFORMS}
 
 EXTENSIONS = []  # DEFINE YOURSELF if compiled extensions are needed
 
@@ -423,6 +425,7 @@ setup(
     author=__author__,
     author_email=__email__,
     url=PROJECTSITE,
+    platforms=PLATFORMS,
     packages=[SOURCE],
     ext_modules = EXTENSIONS,
     classifiers=[
@@ -500,6 +503,10 @@ def collect_information():
     store_input('{PROJECTDESC}', 'A short description of this project')
     store_input('{PROJECTLICENSE}', 'What license is this project under', \
         'MIT')
+    store_input('{PLATFORMS}', 'Comma sperated list of platforms for this project')
+
+    PROJECT_INFO['{PLATFORMS}'] = [string.strip() for string in PROJECT_INFO['{PLATFORMS}'].split(',')]
+
     store_input('{SOURCE}', 'Where is the project source located', \
         PROJECT_INFO['{PROJECTNAME}'].lower())
     store_input('{TESTDIR}', 'What is the unittest directory', \
