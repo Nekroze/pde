@@ -22,7 +22,6 @@ SCRIPTS = ['pde']
 EXTENSIONS = []  # DEFINE YOURSELF if compiled extensions are needed
 
 
-PYLINT = True
 PYTHON = 'python'
 if platform.system() != 'Windows' and sys.version_info[0] == 3:
     PYTHON = 'python3'
@@ -84,7 +83,7 @@ class Prep(Command):
     def run(self):
         if os.system(PYTHON + ' setup.py test'):
             sys.exit(1)
-        if PYLINT and os.system(PYTHON + ' setup.py style'):
+        if os.system(PYTHON + ' setup.py style'):
             sys.exit(1)
 
 
@@ -110,6 +109,28 @@ class GitCommit(Command):
         else:
             os.system('git commit -a')
 
+
+class PyPiUpload(Command):
+    """Update this project at the current version to pypi."""
+    description = "Update pypi."
+    user_options = []
+
+    def initialize_options(self):
+        """pass."""
+        pass
+
+    def finalize_options(self):
+        """pass."""
+        pass
+
+    def run(self):
+        """build an sdist and then upload."""
+        if os.system(PYTHON + ' setup.py check'):
+            sys.exit(1)
+        if os.system(PYTHON + ' setup.py sdist upload'):
+            sys.exit(1)
+        print('PyPi Upload successful.')
+
 			
 vRe = re.compile(r'__version__\s*=\s*(\S+)', re.M)
 data = open('setup.py').read()
@@ -126,7 +147,8 @@ setup(
         'style': Style,
         'test': Test,
         'prep': Prep,
-        'commit': GitCommit},
+        'commit': GitCommit,
+        'pypiup': PyPiUpload},
 
     name=PROJECTNAME,
     author=__author__,
