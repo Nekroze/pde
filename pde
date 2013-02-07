@@ -524,6 +524,13 @@ def collect_information():
         PROJECT_INFO['{PROJECTNAME}'].lower())
     store_input('{TESTDIR}', 'What is the unittest directory', \
         'test')
+    sdir = PROJECT_INFO['{SOURCE}']
+    if sdir:
+        ensure_dir(sdir)
+    tdir = PROJECT_INFO['{TESTDIR}']
+    if tdir:
+        ensure_dir(tdir)
+    
 
 
 def setup_pylint():
