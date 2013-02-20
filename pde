@@ -443,6 +443,7 @@ PDE_GITIGNORE = '''
 *.egg
 *.egg-info
 dist
+_build
 build
 eggs
 parts
@@ -471,6 +472,8 @@ nosetests.xml
 *.e5p
 .eric4project
 .eric5project
+*.nja
+*.eproject
 .mr.developer.cfg
 .project
 .pydevproject
