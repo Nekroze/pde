@@ -16,6 +16,7 @@ class TestValidity(unittest.TestCase):
         arglist.append('--platforms "*nix, Windows"')
         arglist.append('--source "src"')
         arglist.append('--test "test"')
+        arglist.append('--tester "nose"')
 
         args = ''
         for arg in arglist:

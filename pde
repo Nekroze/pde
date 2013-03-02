@@ -289,6 +289,7 @@ PROJECTDESC = \
 '{PROJECTDESC}'
 PROJECTLICENSE = '{PROJECTLICENSE}'
 PLATFORMS = {PLATFORMS}
+TESTER = '{TESTER}'
 
 EXTENSIONS = []  # DEFINE YOURSELF if compiled extensions are needed
 
@@ -313,7 +314,11 @@ class Test(Command):
 
     def run(self):
         """Run unittests."""
-        if os.system(PYTHON + ' -m unittest discover ' + TESTDIR + ' "*.py"'):
+        if TESTER == 'unittest' and os.system(PYTHON + ' -m unittest discover ' + TESTDIR + ' "*.py"'):
+            sys.exit(1)
+        elif TESTER == 'pytest' and os.system('pytest'):
+            sys.exit(1)
+        elif TESTER == 'nose' and os.system('nosetests'):
             sys.exit(1)
 
 
@@ -528,6 +533,9 @@ def collect_information():
         PROJECT_INFO['{PROJECTNAME}'].lower())
     store_input('{TESTDIR}', 'What is the unittest directory', \
         'test')
+    store_input('{TESTER}', 'What test runner would you like to use. One of [unittest, pytest, nose]', 'unittest')
+    if PROJECT_INFO['{TESTER}'] not in ['unittest', 'pytest', 'nose']:
+        PROJECT_INFO['{TESTER}'] = 'unittest'
     sdir = PROJECT_INFO['{SOURCE}']
     if sdir:
         ensure_dir(sdir)
@@ -598,6 +606,7 @@ def handle_info_defaults(args):
     assign_if(args.platforms, '{PLATFORMS}')
     assign_if(args.source, '{SOURCE}')
     assign_if(args.test, '{TESTDIR}')
+    assign_if(args.tester, '{TESTER}')
 
 
 def driver():
@@ -635,6 +644,8 @@ def driver():
     parser.add_argument("--source", help="Project source code location",
                         type=str, default = '')
     parser.add_argument("--test", help="Project unittest code location",
+                        type=str, default = '')
+    parser.add_argument("--tester", help="Unittest runner [unittest, py.test, nosetests]",
                         type=str, default = '')
     args = parser.parse_args()
 
