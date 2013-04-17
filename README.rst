@@ -89,7 +89,7 @@ You can check out more of what I am doing at
 http://nekroze.eturnilnetwork.com my blog.
 
 If you encounter any errors or problems with PDE, please let me know! Open
-an Issue at the GitHub repository http://github.com/Nekroze/Python-DevEnv .
+an Issue at  http://github.com/Nekroze/pde the GitHub repository.
 
 Thanks!
 
