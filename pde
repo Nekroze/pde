@@ -107,7 +107,7 @@ commands =
     py.test --basetemp={envtmpdir} --durations=1
 
 [testenv:style]
-basepython=python2
+basepython=python
 deps=
     pylint
     flake8
