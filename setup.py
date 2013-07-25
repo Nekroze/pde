@@ -7,7 +7,7 @@ __author__ = 'Taylor "Nekroze" Embrace'
 __email__ = 'nekroze@eturnilnetwork.com'
 SOURCE = 'pde'
 TESTDIR = 'test'
-PROJECTNAME = 'Python-DevEnv'
+PROJECTNAME = 'pde'
 PROJECTSITE = 'http://github.com/Nekroze/Python-DevEnv'
 PROJECTDESC = \
 'PDE is a simple development environment setup script for python projects.'
