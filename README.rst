@@ -101,6 +101,12 @@ The minor version is incremented when new features are implemented.
 The micro version is incremented for small bug fixes and are often
 undocumented unless they change the user experience.
 
+v1.3.0 - July 26 2013
+ * Changed repository and pypi package name to 'pde'
+ * Updated setup script to setuptools
+ * Removed silly commands from setup script
+ * Added tox support
+
 v1.2.0 - February 4th 2013
  * Optional output directory
  * Optional project information overrides from the command line
