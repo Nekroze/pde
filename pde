@@ -179,15 +179,18 @@ def setup_pylint():
     """Generates a default .pylintrc file to disk"""
     proc = subprocess.Popen(["pylint", "--generate-rcfile"],
                             stdout=subprocess.PIPE, shell=True)
-    open(".pylintrc", 'w').write(str(proc.communicate()[0]))
+    filename = os.path.join(OUTPUTDIR, '.pylintrc')
+    open(filename, 'w').write(str(proc.communicate()[0]))
 
 
 def setup_tox():
+    """Setup a tox.ini file."""
     setup_pylint()
     base = PDE_TOX
     for key, value in PROJECT_INFO.items():
         base = base.replace(key, str(value))
-    open("tox.ini", 'w').write(base)
+    filename = os.path.join(OUTPUTDIR, 'tox.ini')
+    open(filename, 'w').write(base)
 
 
 def create_setup():
@@ -279,13 +282,9 @@ pylint and flake8 style checking and pytest unittesting""",
                         type=str, default = '')
     parser.add_argument("--projlicense", help="Project license",
                         type=str, default = '')
-    parser.add_argument("--platforms", help="Project platforms, comma seperated string",
-                        type=str, default = '')
     parser.add_argument("--source", help="Project source code location",
                         type=str, default = '')
     parser.add_argument("--test", help="Project unittest code location",
-                        type=str, default = '')
-    parser.add_argument("--tester", help="Unittest runner [unittest, py.test, nosetests]",
                         type=str, default = '')
     args = parser.parse_args()
 
