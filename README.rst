@@ -15,64 +15,7 @@ liberal then the basic options, but still very useful.
 Usage
 =====
 
-usage: pde [-h] [-p] [-g] [-v] [-o OUTPUTDIR]
-           [--name NAME] [--description DESCRIPTION] [--author AUTHOR]
-           [--email EMAIL] [--website WEBSITE] [--projversion PROJVERSION]
-           [--projlicense PROJLICENSE] [--platforms PLATFORMS]
-           [--source SOURCE] [--test TEST]
-
-Python-DevEnv is a simple setup script generator to help with starting a
-python project. It can automatically generate ``pylint`` configs and easy ``setup.py``
-script commands for unittesting, style testing and git support. All questions
-can be overridden with command line arguments as detailed below.
-
-**optional arguments**::
-  -h, --help            show this help message and exit
-  -p, --pylint          Generate .pylintrc file for pylint
-  -g, --gitignore       Generate .gitignore file with python and cython
-                        settings
-  -v, --version         Python-DevEnv version display
-  -o OUTPUTDIR, --outputdir OUTPUTDIR
-                        Output directory
-  --name NAME           Project name
-  --description DESCRIPTION
-                        Project description
-  --author AUTHOR       Project Author name
-  --email EMAIL         Project/Author email address
-  --website WEBSITE     Project website url
-  --projversion PROJVERSION
-                        Project version
-  --projlicense PROJLICENSE
-                        Project license
-  --platforms PLATFORMS
-                        Project platforms, comma seperated string
-  --source SOURCE       Project source code location
-  --test TEST           Project unittest code location
-
-Output Usage
-============
-
-The generated setup script has additional commands that should
-be useful when working on any Python project.
-
-``python setup.py test``: Automatically runs ``unittest`` discovery
-on the provided test directory.
-
-``python setup.py style``: Run pylint style checking on the source
-directory provided. If the ``-p`` switch was not used, this will
-complain because there will be no ``.pylintrc`` file in the project
-directory however one can be manually made. 
-
-``python setup.py prep``: Will run the test and style command. Handy to
-ensure that everything is working before a distribution or commit.
-
-``python setup.py commit [-m message]``: Allows simple git integration by
-running `git add .` followed by a `git commit` with an optional
-message provided by the ``-m`` switch.
-
-``python setup.py pypiup``: Performs a distutils check to ensure that
-project meta data is up to spec then creates an sdist and attempts to
-upload it to the PyPi package repository.
+PDE is undergoing a makeover currently and its repo version is unusable.
 
 License
 =======
