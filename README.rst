@@ -11,6 +11,10 @@ If you like, it can also generate a ``.pylintrc`` with some useful
 settings for Pylint. (Use ``-p``.)  The settings are a little more 
 liberal then the basic options, but still very useful.
 
+This project will not be maintained any further as **Tyrant** will be taking
+over as a project setup generator and assistant with many more features then
+pde could ever have. **Tyrant** can be found here https://github.com/Nekroze/tyrant
+
 
 Usage
 =====
